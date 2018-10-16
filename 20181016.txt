@@ -8,3 +8,4 @@ insert into SYS_USER_TYPE_MENU  (SYS_USER_TYPE_ID,SYS_TREENODE_ID,SORT,STATE) va
 insert into SYS_TREENODE(ID,MENUNAME,URLADDRESS,PID,SORT) values ('2008','工程信息管理',null,20,1);
 insert into SYS_TREENODE(ID,MENUNAME,URLADDRESS,PID,SORT) values ('200801','砂浆设计用量填报','Operation/Project/SJestimate_AmountList.aspx',2008,15);
 
+添加了连个类文件：COMMON_ATTACHMENTInfo 和 COMMON_ATTACHMENT
