@@ -18,4 +18,22 @@ void Main()
 			Console.WriteLine(num);
 		});
 	}
+	
+	// Task.Run(A)相当于Task.Factory.StartNew(A, CancellationToken.None, TaskCreationOptions.DenyChildAttach, TaskScheduler.Default);
+	// Task.Factory.StartNew(A)相当于Task.Factory.StartNew(A, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Current);
+	// 下面childTask不会被等待完成，即使使用了TaskCreationOptions.AttachedToParent
+	var parentTask = Task.Run(() =>
+		{
+			var childTask = new Task(() =>
+			{
+				Thread.Sleep(3000);
+				Console.WriteLine("Child task finished.");
+			}, TaskCreationOptions.AttachedToParent);
+			childTask.Start();
+
+			Console.WriteLine("Parent task finished.");
+		});
+
+	parentTask.Wait();
+	Console.WriteLine("Main thread finished.");
 }
